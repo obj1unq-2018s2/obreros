@@ -36,7 +36,9 @@ _pintor_:
 Por último tenemos al _directorDeObra_, que es el quien gestiona toda la obra.
 
 _directorDeObra_:
-`contratarPersonal` : contratar un numero albaniles acorde al tamaño de la obra y un especialista por tipo.
+`contratarPersonal` : contratar un numero albaniles acorde al tamaño de la obra, el calculo que tiene que hacer es 1 albanil por cada 2000 _unidades_de_trabajo necesarias para completar la obra, obviamente siempre redondear hacia arriba la cantidad de albaniles.
+Además contrata un especialista por tipo.
+
 `pedirHabilitacion`: pide la habilitación de la obra
 `iniciarJornal` : el jornal se divide en:
   - 40% de los albañiles hacen una pared cada 1
@@ -109,9 +111,9 @@ Si un tipo de obra se va acordando de qué obreros trabajaron, se puede hacer un
 ## UOCRA Presente
 Cada el sindicato visita la obra para verificar que todos los obreros esten en blanco y todos esten usando los elementos de seguridad correspondientes.
 
-Para evitar suspensiones la obra realiza una verificacion antes de iniciar la jornada de trabajo, que todos los obreros esten listo con los elementos de seguridad necesarios, la obra le pide al _director_de_obra_ que verifique que todos los empleados estén utilizando los elementos de seguridad.
+Para garantizar estar en regla, al momento de contratar, el _directorDeObra_ tiene que verificar que el obrero exista en los registros de UOCRA.
 
-Si hay algun obrero que no pertenece al sindicato, la verificacion falla.
+Para evitar suspensiones la obra realiza una verificacion antes de iniciar la jornada de trabajo, que todos los obreros esten listo con los elementos de seguridad necesarios, la obra le pide al _director_de_obra_ que verifique que todos los empleados estén utilizando los elementos de seguridad.
 
 Cada obra debe poder _informar_ la nómina de obreros trabajando en ella su número de afiliado a UOCRA.
 
