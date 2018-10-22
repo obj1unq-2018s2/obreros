@@ -105,6 +105,8 @@ El precio del jornal esta definido por tipo de obrero, esa información la tiene
 
 El _sindicato_ tienen una nomina de empleados registrados. Tambien saben el precio por jornal de los albaniles, el precio por ahora de cada especialidad.
 
+Cada obrero registra un acumulado de sueldos cobrados.
+
 ## Rotación de personal
 Si un tipo de obra se va acordando de qué obreros trabajaron, se puede hacer un método trabajo(obrero), para que practiquen el contains.
 
