@@ -1,10 +1,23 @@
 class Obrero {
-	var trabajando
+	var trabajando = false
 	var obras = #{}
 	var jornalesAdeudados = 0
 	
+	method jornalesAdeudados() {
+		return jornalesAdeudados
+	}
+	
 	method trabajar(obra) {
+		trabajando = true
 		jornalesAdeudados += 1
+	}
+	
+	method descansar() {
+		trabajando = false
+	}
+	
+	method trabajando() {
+		return trabajando
 	}
 }
 
@@ -13,7 +26,8 @@ class Albanil inherits Obrero {
 	override method trabajar(obra) {
 		if (obra.ladrillos()) {
 			super(obra)
-			obra.paredLevantada(100)
+			obra.trabajoAlbanileria(100)
+			self.descansar()
 		}	
 	}	
 }
