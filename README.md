@@ -3,9 +3,9 @@ Debemos armar un modelo de obrero de la construcción
 
 ## Modelo básico
 Un obrero debe poder realizar distintos trabajos para la obra en que está trabajando.
-Los trabajos que puede realizar van a depender del tipo de obreros.
+Los trabajos que puede realizar van a depender del tipo de obrero.
 Un obrero debe saber si esta trabajando o en descanso.
-Los obreros se registran en una obra para trabajar en un obra.
+Los obreros se registran en una obra para estar disponibles para el trabajo.
 
 Hay distintos tipo de obreros en una obra: _albañiles_, _plomeros_, _electricistas_ y _gasistas_.
 
