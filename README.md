@@ -66,8 +66,12 @@ Las obras liquidan el sueldo quincenalmente a todos los obreros, consultando a c
 Los obreros saben cuantos jornales tienen pendientes de cobrar. El precio por jornal está definido por el sindicado (UOCRA). Los obreros deben guardar un registro de los días trabajados en la última quincena.
 Además deben guardar un registro de las obras en las que trabajó
 
-Los _sindicatos_ tienen una nomina de empleados registrados. Tambien saben el precio por jornal de los albaniles, el precio por ahora de cada especialidad.
+Los _sindicatos_ tienen una nomina de empleados registrados. Tambien saben el precio por jornal de los albaniles, el precio por ahora de cada especialidad:
 
+_albañil_ : 300
+_plomero_ : 800
+_electricista_ : 1000
+_gasista_ : 1300
 
 ## UOCRA Presente
 Cada el sindicato visita la obra para verificar que todos los obreros esten en blanco y todos esten usando los elementos de seguridad correspondientes.
