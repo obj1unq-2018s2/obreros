@@ -1,5 +1,5 @@
 # Obreros
-Debemos armar un modelo de obrero de la construcción
+Debemos armar un modelo de obrero de la construcción, que trabajan en diferentes tipos de obras.
 
 ## Modelo básico
 Un obrero debe poder realizar distintos trabajos para la obra en la que está trabajando.
@@ -9,20 +9,19 @@ Los obreros se registran en una obra para estar disponibles para el trabajo.
 
 Hay distintos tipos de obreros en una obra: _albañiles_, _plomeros_, _electricistas_ y _gasistas_.
 
-El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según su tipo puede consumir:
- _albañil_ : 100 ladrillos;
- _gasista_ : 2 metros de caños de gas;
- _plomero_ : 10 metros de caños de agua;
- _electricista_ : 3 metros de cable.
+El avance de la obra se realiza por Jornal. Durante un jornal cada obrero gasta un tipo de material diferente, según se detalla aquí:
+* _albañil_: 100 ladrillos;
+* _gasista_: 2 metros de caños de gas;
+* _plomero_: 10 metros de caños de agua;
+* _electricista_: 3 metros de cable.
  
-Antes de comenzar la jornada el obrero debe verificar si tiene material para trabajar. Si no hay disponible, no le corresponde trabajar.
+Antes de comenzar la jornada el obrero debe verificar si **tiene material para trabajar**. 
  
-Al final de cada jornada el obrero informa a la obra de su avance. Además, debe guardar registro de cada jornada trabajada y no cobrada.
-
+Al final de cada jornada el obrero **informa a la obra** de su avance y se descuentan de ella los materiales que corresponde. Además, debe guardar registro de cada jornada trabajada y no cobrada.
 
 # Tipos de obras
 Las obras tienen: 
-* un conjunto de obreros que se registran para trabajar (recordar que trabajan por jornal);
+* un conjunto de obreros que se registran para trabajar;
 * una cantidad de metros de superficie a construir;
 
 Además, no se pueden iniciar si no fueron habilitadas municipalmente, y no se pueden finalizar si no se completaron todas las tareas necesarias.
