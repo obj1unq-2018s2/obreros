@@ -47,7 +47,7 @@ Pueden ser contrucciones de hasta 3 pisos, deben poder definirse la cantidad de 
 Si la casa tiene mas de una planta, debe sumar un 20% de cada material por planta.
 Si tiene cochera, sumar otro 10% a cada material.
 
-#### edificios
+### edificios
 Tienen 4 pisos o más, ademas se tiene q poder definir cuantos departamentos por piso.
 Los edificios además tiene que indicar la cantidad de ascendores, por ascensor se calcula 3000 metros de _cable_.
 Un  edificio puede tener cochera subterranea de varios niveles, por cada nivel se agrega:
