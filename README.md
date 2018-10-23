@@ -4,120 +4,82 @@ Debemos armar un modelo de obrero de la construcción
 ## Modelo básico
 Un obrero debe poder realizar distintos trabajos para la obra en que está trabajando.
 Los trabajos que puede realizar van a depender de que tipo de obreros es.
-Cada trabajo realizado incrementa el avance de la obra, cuanto lo incrementa depende del tipo de trabajo y  de la obra.
-
 Un obrero de saber si esta trabajando o en descanso.
+Los obreros se registran en una obra.
 
-Los obreros siempre trabajan en una obra por vez hasta finalizarla.
 
 Hay distintos tipo de obreros en una obra:
 
-Los _albañiles_ , que se encargan de todos los trabajos comunes de albañileria. Las tareas que pueden realizar son:
+Los _albañiles_ :
 
-`levantarPared()`,
-`hacerPiso()`,
-`hacerLosa()`
-
-Los especialistas, entre los que se encuentran _plomeros_, _electricistas_, _gasistas_, _pintor_ realizar tareas dependendiendo de su especialidad:
+`levantarPared(cantidadDeLadrillos)`,
 
 _plomeros_: 
-`hacerInstalacionDeAgua()`
+`hacerInstalacionDeAgua(metrosDeCanos)`
 
 _electricistas_:
-`hacerInstalacionElectrica()`
+`hacerInstalacionElectrica(metrosDeCable)`
 
 _gasistas_: 
-`hacerInstalacionDeGas()`
-
-_pintor_:
-`pintar()`
+`hacerInstalacionDeGas(metrosDeCano)`
 
 
-Por último tenemos al _directorDeObra_, que es el quien gestiona toda la obra.
+# Tipos de obras
+Las obras conjunto de obreros que se registran para trabajar y trabajar por jornal.
+Las obras tiene una cantidad de metros de superficia a construir.
+Las obras no se pueden iniciar si no fueron habilitadas municipalmente, y no se puede finalizar si no se completaron todas las tareas necesarias.
+Mas allá del tipo de obra, cada obra al inicio define un presupuesto en pesos y una cantidad de materiales a consumir: _ladrillos_, _cables_ (en metros), _cañosDeAgua_ (en metros), _cañosDeGas_ (en metros).
+Cada trabajar informa a la obra de su trabajo realizado y está actualiza su avance.
+La obra está finalizada cuando se terminan de utilizar todos los materiales.
 
-_directorDeObra_:
-`contratarPersonal` : contratar un numero albaniles acorde al tamaño de la obra, el calculo que tiene que hacer es 1 albanil por cada 2000 _unidades_de_trabajo necesarias para completar la obra, obviamente siempre redondear hacia arriba la cantidad de albaniles.
-Además contrata un especialista por tipo.
+Se calcula que por m2 de superficie a construir se necesitan:
 
-`pedirHabilitacion`: pide la habilitación de la obra
-`iniciarJornal` : el jornal se divide en:
-  - 40% de los albañiles hacen una pared cada 1
-  - el 30% de los albañiles hace un Piso
-  - el 30% de los albañiles hace un Techo
-  - cada uno de los especialistas realiza tu tarea particular
-  
-  Al principio y al inicio de la jornada, se calcula si se completo la obra (verificando que se llegó a completar el esfuerzo necesario).
+- 500 ladrillos, 5 metros de caños de agua, 2 metros de caños de gas y 8 metros de cables.
 
-
-## Tipos de obras
-Las obras tienen un _director_de_obra_ y conjunto de obreros que trabajan por jornal. Cada obrero es exclusivo de esa obra hasta su finalización.
-Las obras no se pueden iniciar si no fueron habilitadas municipalmente.
-
-Cada cada obra se necesita un _esfuerzoLaboral_, medido en _unidades_de_trabajo_,  determinado para completarlo, determinado en base al tamaño de la misma.
-Una obra nos tiene que poder informar el porcentaje de avance.
-
-Las acciones que recibe una obra de un obrero son las siguientes:
-
-`paredTerminada()`
-`pisoTerminado()`
-`techoTerminado()`
-`habitacionPintada()`
-`instalacionDeGasTerminada()`
-`instalacionElectricaTerminada()`
-`instalacionAguaTerminada()`
-
-### Tenemos dos tipos de obras:
-_casas_ : Las casas tiene 1 techo y un piso y debe poder definirse la cantidad de habitaciones.
-La cantidad de _unidades_de_trabajo_ necesarias para completar una casa se determina con la siguiente formula:
-
-`esfuerzoNecesario = cantidadDeAmbientes * 1000 `
-
-Las tareas realizadas aportar la siguiente cantidad de _unidades_de_trabajo:
-
-`paredTerminada()` = 50 unidades
-`pisoTerminado()`  = 50 unidades
-`techoTerminado()`  = 50 unidades
-`habitacionPintada()` =  100 unidades
-`instalacionDeGasTerminada()`  = 1000 unidades
-`instalacionElectricaTerminada()` =  2300 unidades
-`instalacionAguaTerminada()` = 1200 unidades
-
-_edificios_ : 
-tienen 2 pisos de altura o más, ademas se tiene q poder definir cuantos pisos, cuantos departamentos por piso y cuantas habitaciones por departamento.
-
-`esfuerzoNecesario = cantidadDePisos * cantidadDeDepartamentosPorPiso * cantidadDeAmbientesPorDepartamento * 500) +  `
-
-Las tareas realizadas aportar la siguiente cantidad de _unidades_de_trabajo:
-
-`paredTerminada()` = 20 unidades
-`pisoTerminado()`  = 25 unidades
-`techoTerminado()`  = 20 unidades
-`habitacionPintada()` =  80 unidades
-`instalacionDeGasTerminada()`  = 500 unidades
-`instalacionElectricaTerminada()` =  1700 unidades
-`instalacionAguaTerminada()` = 800 unidades
+El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según si tipo puede consumir:
+ _abañil_ : 100 ladrillos
+ _gasista_ : 2 metros de caños de gas
+ _plomero_ : 10 metros de caños de agua
+ _electricista_ : 3 metros de cable
+ 
+Al inicio de una jornal, verifica que materiales faltan consumir, se fija cuantos obreros tiene de cada especialidad y le pide que registren una jornada de trabajo. Cuando el obrero finaliza su jornada, debe avisarle a la obra del avance.
+NO debería llamar a mas obreros de los que necesita, por ejemplo:
+- me quedan 100 ladrillos, solo necesito llamar a 1 albañil.
+- ya no tengo caños de agua, no necesito ningun plomero.
 
 
-## Liquidacion de sueldos y Sindicatos
-Las obras liquidan el sueldo quincenalmente a todos los obreros consultado al sindicato la información necesario para esa liquidación.
+Tenemos dos tipos de obras:
+_casas_ : las primeras pueden ser contrucciones de hasta 3 pisos, deben poder definirse la cantidad de habitaciones, baños y lugares comunes.
+Si la casa tiene mas de una planta, debe sumar un 20% de cada material por planta.
+Si tiene cochera, sumar otro 10% a cada material.
 
-El precio del jornal esta definido por tipo de obrero, esa información la tiene el sindicado de la construcción UOCRA.
+_edificios_ : tienen 4 pisos o más, ademas se tiene q poder definir cuantos departamentos por piso.
+Los edificios además tiene que indicar la cantidad de ascendores, por ascensor se calcula 3000 metros de _cable_.
+Un  edificio puede tener cochera subterranea de varios niveles, por cada nivel se agrega:
 
-El _sindicato_ tienen una nomina de empleados registrados. Tambien saben el precio por jornal de los albaniles, el precio por ahora de cada especialidad.
+- 5000 ladrillos, 100 metros de caños de agua y 200 metros de cables.
 
-Cada obrero registra un acumulado de sueldos cobrados.
 
-## Rotación de personal
-Si un tipo de obra se va acordando de qué obreros trabajaron, se puede hacer un método trabajo(obrero), para que practiquen el contains.
+# Liquidacion de sueldos y Sindicatos
+Las obras liquidan el sueldo quincenalmente a todos los obreros, consultando a cada obreros cuando se le debe liquidar.
+
+Los obreros saben cuantos jornales tienen pendientes de cobrar. El precio por jornal está definido por el sindicado (UOCRA). Los obreros deben guardar un registro de los días trabajados en la última quincena.
+Además deben guardar un registro de las obras en las que trabajó
+
+Los _sindicatos_ tienen una nomina de empleados registrados. Tambien saben el precio por jornal de los albaniles, el precio por ahora de cada especialidad:
+
+_albañil_ : 300
+_plomero_ : 800
+_electricista_ : 1000
+_gasista_ : 1300
 
 ## UOCRA Presente
 Cada el sindicato visita la obra para verificar que todos los obreros esten en blanco y todos esten usando los elementos de seguridad correspondientes.
 
-Para garantizar estar en regla, al momento de contratar, el _directorDeObra_ tiene que verificar que el obrero exista en los registros de UOCRA.
+Para evitar suspensiones la obra toma algunas medidas:
 
-Para evitar suspensiones la obra realiza una verificacion antes de iniciar la jornada de trabajo, que todos los obreros esten listo con los elementos de seguridad necesarios, la obra le pide al _director_de_obra_ que verifique que todos los empleados estén utilizando los elementos de seguridad.
+- cuando un obrero se registra para trabajar en una obra, se verifica con el sindicato que el obrero en cuestion esté en sus registros.
 
-Cada obra debe poder _informar_ la nómina de obreros trabajando en ella su número de afiliado a UOCRA.
+- antes del inicio de la jornada laboral, se verifica que cada obrero esté utilizando los elementos de seguridad. Esta verificación se realiza preguntandole al obrero.
 
-
-
+- Cada obra debe poder _informar_ la nómina de obreros trabajando en ella su número de afiliado a UOCRA.
