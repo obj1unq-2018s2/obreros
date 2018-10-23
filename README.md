@@ -42,11 +42,13 @@ El avance de la obra se realiza por Jornal, durante un jornal se estima que un o
 Al inicio de una jornal, verifica si faltan materiales por consumir y llamas a los obreros registrados para que trabajen la jornada de trabajo. Cuando el obrero finaliza su jornada, debe avisarle a la obra del avance.
 
 Tenemos dos tipos de obras:
-_casas_ : las primeras pueden ser contrucciones de hasta 3 pisos, deben poder definirse la cantidad de habitaciones, baños y lugares comunes.
+### casas
+Pueden ser contrucciones de hasta 3 pisos, deben poder definirse la cantidad de habitaciones, baños y lugares comunes.
 Si la casa tiene mas de una planta, debe sumar un 20% de cada material por planta.
 Si tiene cochera, sumar otro 10% a cada material.
 
-_edificios_ : tienen 4 pisos o más, ademas se tiene q poder definir cuantos departamentos por piso.
+#### edificios
+Tienen 4 pisos o más, ademas se tiene q poder definir cuantos departamentos por piso.
 Los edificios además tiene que indicar la cantidad de ascendores, por ascensor se calcula 3000 metros de _cable_.
 Un  edificio puede tener cochera subterranea de varios niveles, por cada nivel se agrega:
 
