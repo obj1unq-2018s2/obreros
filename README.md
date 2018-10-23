@@ -15,6 +15,8 @@ El avance de la obra se realiza por Jornal, durante un jornal se estima que un o
  _plomero_ : 10 metros de caños de agua
  _electricista_ : 3 metros de cable
  
+ Antes de comenzar la jornada el obrero debe verificar si tiene material para trabajar en la obra, sino hay disponible, no le corresponde trabajar.
+ 
  Al final de cada jornada el obrero informa a la obra de su avance.
  Un obrero debe guardar registro de cada jornada trabajada y no cobrada.
 
@@ -37,11 +39,7 @@ El avance de la obra se realiza por Jornal, durante un jornal se estima que un o
  _plomero_ : 10 metros de caños de agua
  _electricista_ : 3 metros de cable
  
-Al inicio de una jornal, verifica que materiales faltan consumir, se fija cuantos obreros tiene de cada especialidad y le pide que registren una jornada de trabajo. Cuando el obrero finaliza su jornada, debe avisarle a la obra del avance.
-NO debería llamar a mas obreros de los que necesita, por ejemplo:
-- me quedan 100 ladrillos, solo necesito llamar a 1 albañil.
-- ya no tengo caños de agua, no necesito ningun plomero.
-
+Al inicio de una jornal, verifica si faltan materiales por consumir y llamas a los obreros registrados para que trabajen la jornada de trabajo. Cuando el obrero finaliza su jornada, debe avisarle a la obra del avance.
 
 Tenemos dos tipos de obras:
 _casas_ : las primeras pueden ser contrucciones de hasta 3 pisos, deben poder definirse la cantidad de habitaciones, baños y lugares comunes.
@@ -78,3 +76,6 @@ Para evitar suspensiones la obra toma algunas medidas:
 - antes del inicio de la jornada laboral, se verifica que cada obrero esté utilizando los elementos de seguridad. Esta verificación se realiza preguntandole al obrero.
 
 - Cada obra debe poder _informar_ la nómina de obreros trabajando en ella su número de afiliado a UOCRA.
+
+## Enfermedad
+Un obrero puede declarse enfermo, en esos casos no debe ser llamado a trabajar.
