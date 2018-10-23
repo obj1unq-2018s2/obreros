@@ -3,25 +3,20 @@ Debemos armar un modelo de obrero de la construcción
 
 ## Modelo básico
 Un obrero debe poder realizar distintos trabajos para la obra en que está trabajando.
-Los trabajos que puede realizar van a depender de que tipo de obreros es.
-Un obrero de saber si esta trabajando o en descanso.
-Los obreros se registran en una obra.
+Los trabajos que puede realizar van a depender del tipo de obreros.
+Un obrero debe saber si esta trabajando o en descanso.
+Los obreros se registran en una obra para trabajar en un obra.
 
+Hay distintos tipo de obreros en una obra: _albañiles_, _plomeros_, _electricistas_ y _gasistas_.
 
-Hay distintos tipo de obreros en una obra:
-
-Los _albañiles_ :
-
-`levantarPared(cantidadDeLadrillos)`,
-
-_plomeros_: 
-`hacerInstalacionDeAgua(metrosDeCanos)`
-
-_electricistas_:
-`hacerInstalacionElectrica(metrosDeCable)`
-
-_gasistas_: 
-`hacerInstalacionDeGas(metrosDeCano)`
+El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según su tipo puede consumir:
+ _albañil_ : 100 ladrillos
+ _gasista_ : 2 metros de caños de gas
+ _plomero_ : 10 metros de caños de agua
+ _electricista_ : 3 metros de cable
+ 
+ Al final de cada jornada el obrero informa a la obra de su avance.
+ Un obrero debe guardar registro de cada jornada trabajada y no cobrada.
 
 
 # Tipos de obras
@@ -30,13 +25,13 @@ Las obras tiene una cantidad de metros de superficia a construir.
 Las obras no se pueden iniciar si no fueron habilitadas municipalmente, y no se puede finalizar si no se completaron todas las tareas necesarias.
 Mas allá del tipo de obra, cada obra al inicio define un presupuesto en pesos y una cantidad de materiales a consumir: _ladrillos_, _cables_ (en metros), _cañosDeAgua_ (en metros), _cañosDeGas_ (en metros).
 Cada trabajar informa a la obra de su trabajo realizado y está actualiza su avance.
-La obra está finalizada cuando se terminan de utilizar todos los materiales.
+La obra está finalizada cuando se terminan de utilizar todos los materiales y tiene que poder informar si está finalizada.
 
 Se calcula que por m2 de superficie a construir se necesitan:
 
 - 500 ladrillos, 5 metros de caños de agua, 2 metros de caños de gas y 8 metros de cables.
 
-El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según si tipo puede consumir:
+El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según su tipo puede consumir:
  _abañil_ : 100 ladrillos
  _gasista_ : 2 metros de caños de gas
  _plomero_ : 10 metros de caños de agua
