@@ -3,90 +3,79 @@ Debemos armar un modelo de obrero de la construcción
 
 ## Modelo básico
 Un obrero debe poder realizar distintos trabajos para la obra en que está trabajando.
-Los trabajos que puede realizar van a depender de que tipo de obreros es.
-Un obrero de saber si esta trabajando o en descanso.
-Los obreros siempre trabajan en una obra por vez hasta finalizarla.
+Los trabajos que puede realizar van a depender del tipo de obrero.
+Un obrero debe saber si esta trabajando o en descanso.
+Los obreros se registran en una obra para estar disponibles para el trabajo.
 
-Hay distintos tipo de obreros en una obra:
+Hay distintos tipo de obreros en una obra: _albañiles_, _plomeros_, _electricistas_ y _gasistas_.
 
-Los _albañiles_ , que se encargan de todos los trabajos comunes de albañileria. Las tareas que pueden realizar son:
-
-`levantarPared()`,
-`hacerPiso()`,
-`hacerLosa()`
-
-Los especialistas, entre los que se encuentran _plomeros_, _electricistas_, _gasistas_, _pintor_ realizar tareas dependendiendo de su especialidad:
-
-_plomeros_: 
-`hacerInstalacionDeAgua()`
-
-_electricistas_:
-`hacerInstalacionElectrica()`
-
-_gasistas_: 
-`hacerInstalacionDeGas()`
-
-_pintor_:
-`pintar()`
-
-
-Por último tenemos al _directorDeObra_, que es el quien gestiona toda la obra, cobra un sueldo fijo por quincena, su también esta definido por el sindicato.
-
-_directorDeObra_:
-`iniciaObra`
-`finalizarObra`
-`pedirHabilitacion`
+El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según su tipo puede consumir:
+ _albañil_ : 100 ladrillos
+ _gasista_ : 2 metros de caños de gas
+ _plomero_ : 10 metros de caños de agua
+ _electricista_ : 3 metros de cable
+ 
+ Antes de comenzar la jornada el obrero debe verificar si tiene material para trabajar en la obra, sino hay disponible, no le corresponde trabajar.
+ 
+ Al final de cada jornada el obrero informa a la obra de su avance.
+ Un obrero debe guardar registro de cada jornada trabajada y no cobrada.
 
 
 # Tipos de obras
-Las obras tienen un _director_de_obra_ y conjunto de obreros que trabajan por jornal. Cada obrero es exclusivo de esa obra hasta su finalización.
+Las obras conjunto de obreros que se registran para trabajar y trabajar por jornal.
+Las obras tiene una cantidad de metros de superficia a construir.
 Las obras no se pueden iniciar si no fueron habilitadas municipalmente, y no se puede finalizar si no se completaron todas las tareas necesarias.
-Mas allá del tipo de obra, cada obra tiene una cantidad de paredes, pisos, techos, baños, instalaciones de agua, instalaciones de gas instalaciones electricas a terminar y otra cantidad de ambientes a pintar.
+Mas allá del tipo de obra, cada obra al inicio define un presupuesto en pesos y una cantidad de materiales a consumir: _ladrillos_, _cables_ (en metros), _cañosDeAgua_ (en metros), _cañosDeGas_ (en metros).
+Cada trabajar informa a la obra de su trabajo realizado y está actualiza su avance.
+La obra está finalizada cuando se terminan de utilizar todos los materiales y tiene que poder informar si está finalizada.
 
+Se calcula que por m2 de superficie a construir se necesitan:
 
-Las tareas efectuadas por las obreros reciben
+- 500 ladrillos, 5 metros de caños de agua, 2 metros de caños de gas y 8 metros de cables.
+
+El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según su tipo puede consumir:
+ _abañil_ : 100 ladrillos
+ _gasista_ : 2 metros de caños de gas
+ _plomero_ : 10 metros de caños de agua
+ _electricista_ : 3 metros de cable
+ 
+Al inicio de una jornal, verifica si faltan materiales por consumir y llamas a los obreros registrados para que trabajen la jornada de trabajo. Cuando el obrero finaliza su jornada, debe avisarle a la obra del avance.
 
 Tenemos dos tipos de obras:
-_casas_ : las primeras pueden ser contrucciones de hasta 2 pisos, deben poder definirse la cantidad de habitaciones, baños y lugares comunes.
+_casas_ : las primeras pueden ser contrucciones de hasta 3 pisos, deben poder definirse la cantidad de habitaciones, baños y lugares comunes.
+Si la casa tiene mas de una planta, debe sumar un 20% de cada material por planta.
+Si tiene cochera, sumar otro 10% a cada material.
 
-_edificios_ : tienen 3 pisos o más, ademas se tiene q poder definir cuantos departamentos por piso  
+_edificios_ : tienen 4 pisos o más, ademas se tiene q poder definir cuantos departamentos por piso.
+Los edificios además tiene que indicar la cantidad de ascendores, por ascensor se calcula 3000 metros de _cable_.
+Un  edificio puede tener cochera subterranea de varios niveles, por cada nivel se agrega:
 
-
-
-## Roles dentro de Albañileria
-Dentro de la albañileria existen varios roles:
-
-El _peon_ es el rol inicial, hace todo tipo de trabajos, siempre responde a las ordenes de un _oficial_albañil_, que ya cuenta con mas esperiencia, colabora con los otros tipos de obreros y recibe ordener del _capataz_, que es el encargado de coordinar todo el equipo de albañiles. El _capataz_ responde al director de obra.
-Parte del trabajo de los oficiales y del capataz es darle trabajo a sub subordinados.
-
-
-
+- 5000 ladrillos, 100 metros de caños de agua y 200 metros de cables.
 
 
 # Liquidacion de sueldos y Sindicatos
-Las obras liquidan el sueldo quincenalmente a todos los empleados (albañiles y especialistas) consultado al sindicato la información necesario para esa liquidación.
+Las obras liquidan el sueldo quincenalmente a todos los obreros, consultando a cada obreros cuando se le debe liquidar.
 
-Los _albañiles_ , que se encargan de todos los trabajos comunes de albañileria,  trabajan fijos en un obra hasta que finaliza y cobran por jornal trabajado, el precio por jornal es definido por el sindicado. Los obreros deben guardar un registro de los días trabajados en la última quincena.
-Los especialistas, entre los que se encuentran _plomeros_, _electricistas_, _gasistas_ sobran por horas trabajadas, el precio por hora de cada especialidad está definido tambien por el sindicato. Los especialistas deben guardar un registro de las horas trabajadas en la ultima quincea.
-Por último tenemos al _directorDeObra_, que es el quien gestiona toda la obra, cobra un sueldo fijo por quincena, su también esta definido por el sindicato.
+Los obreros saben cuantos jornales tienen pendientes de cobrar. El precio por jornal está definido por el sindicado (UOCRA). Los obreros deben guardar un registro de los días trabajados en la última quincena.
+Además deben guardar un registro de las obras en las que trabajó
 
-Los _sindicatos_ tienen una nomina de empleados registrados. Tambien saben el precio por jornal de los albaniles, el precio por ahora de cada especialidad.
+Los _sindicatos_ tienen una nomina de empleados registrados. Tambien saben el precio por jornal de los albaniles, el precio por ahora de cada especialidad:
 
-
-
-Obreros hacen cosas en una obra, que tiene un efecto sobre la obra: los albañiles hacen una cosa, los plomeros otra, etc.. Hay dos tipos de obra. P.ej. si el efecto de los albañiles es levantar pared, para una casa es una cosa y para un edificio es otra distinta.
-
-Este ejercicio puede tener algo de errores, p.ej. si le pido hacer algo a un albañil que está en reposo tira error.
-
-## Verificación de la quincena
-Al momento de pagar al empleado, el empleado verifica si lo recibido corresponde con lo que se tenia registro, en caso de no coinciden, debe indicarlo con un error.
-
-## Rotación de personal
-Si un tipo de obra se va acordando de qué obreros trabajaron, se puede hacer un método trabajo(obrero), para que practiquen el contains.
+_albañil_ : 300
+_plomero_ : 800
+_electricista_ : 1000
+_gasista_ : 1300
 
 ## UOCRA Presente
 Cada el sindicato visita la obra para verificar que todos los obreros esten en blanco y todos esten usando los elementos de seguridad correspondientes.
 
-Para evitar suspensiones la obra realiza una verificacion antes de iniciar la jornada de trabajo, que todos los obreros esten listo con los elementos de seguridad necesarios, la obra le pide al _director_de_obra_ que verifique que todos los empleados estén utilizando los elementos de seguridad.
+Para evitar suspensiones la obra toma algunas medidas:
 
-Cada obra debe poder _informar_ la nómina de obreros trabajando en ella su número de afiliado a UOCRA.
+- cuando un obrero se registra para trabajar en una obra, se verifica con el sindicato que el obrero en cuestion esté en sus registros.
+
+- antes del inicio de la jornada laboral, se verifica que cada obrero esté utilizando los elementos de seguridad. Esta verificación se realiza preguntandole al obrero.
+
+- Cada obra debe poder _informar_ la nómina de obreros trabajando en ella su número de afiliado a UOCRA.
+
+## Enfermedad
+Un obrero puede declarse enfermo, en esos casos no debe ser llamado a trabajar.
