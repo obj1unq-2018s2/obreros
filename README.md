@@ -9,26 +9,50 @@ Los obreros se registran en una obra para estar disponibles para el trabajo.
 
 Hay distintos tipos de obreros en una obra: _albañiles_, _plomeros_, _electricistas_ y _gasistas_.
 
-El avance de la obra se realiza por Jornal. Durante un jornal cada obrero gasta un tipo de material diferente, según se detalla aquí:
-* _albañil_: 100 ladrillos;
-* _gasista_: 2 metros de caños de gas;
-* _plomero_: 10 metros de caños de agua;
-* _electricista_: 3 metros de cable.
- 
-Antes de comenzar la jornada el obrero debe verificar si **tiene material para trabajar**. 
- 
-Al final de cada jornada el obrero **informa a la obra** de su avance y se descuentan de ella los materiales que corresponde. Además, debe guardar registro de cada jornada trabajada y no cobrada.
+El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según su tipo puede consumir:
+
+
+Antes de comenzar la jornada el obrero debe verificar si tiene material para trabajar. Si no hay disponible, no le corresponde trabajar.
+
+Al final de cada jornada el obrero informa a la obra de su avance. Además, debe guardar registro de cada jornada trabajada y no cobrada.
+
+
+## Etapa 1
+
+Para cada obra tenemos que poder configurar:
+* su presupuesto, en pesos;
+* los obreros que trabajan en ella;
+* la cantidad de metros cuadrados que se van a construir;
+* la cantidad de cada material que tiene en un momento dado: _ladrillos_, _cables_ (en metros), _caniosDeAgua_ (en metros), _caniosDeGas_ (en metros).
+
+Una vez configurado esto, la obra tiene que poder informar si **está finalizada**, esto es así cuando las horas de trabajo acumuladas coinciden con la cantidad de horas estimadas. En una sobre-simplificación, vamos a decir que las horas estimadas para finalizar se calculan como `cantidad de metros cuadrados * 150`.
+
+Para que una obra avance, tenemos que poder pedirle a cada obrero que **trabaje una jornada** en la obra que tiene asignada. Vamos a suponer que siempre que trabajan gastan la misma cantidad de material, definido de la siguiente manera:
+* _albañil_ : 100 ladrillos;
+* _gasista_ : 2 metros de caños de gas;
+* _plomero_ : 10 metros de caños de agua;
+* _electricista_ : 3 metros de cable.
+
+Si está en servicio, deberían pasar dos cosas: se descuentan los materiales de la obra y se registra en el obrero la jornada de trabajo no cobrada - esto servirá para hacer posteriormente la liquidación.
+
+## Etapa 2 - errores
+
+Vamos a incorporar al modelo algunas situaciones excepcionales que deberían provocar errores.
+
+* Al pedirle que trabaje a un obrero, lo que sucede depende de su estado. Si está descansando, deberá producirse un error con el mensaje "No sea explotador, estoy en mi hora de descanso.". Caso contrario hace lo que ya definimos antes.
+
+
+# TODO:
 
 # Tipos de obras
-Las obras tienen: 
+Las obras tienen:
 * un conjunto de obreros que se registran para trabajar;
 * una cantidad de metros de superficie a construir;
 
 Además, no se pueden iniciar si no fueron habilitadas municipalmente, y no se pueden finalizar si no se completaron todas las tareas necesarias.
 
-Mas allá del tipo de obra, cada obra al inicio define un presupuesto en pesos y una cantidad de materiales a consumir: _ladrillos_, _cables_ (en metros), _cañosDeAgua_ (en metros), _cañosDeGas_ (en metros).
 Cada trabajador informa a la obra de su trabajo realizado y esta actualiza su avance.
-La obra tiene que poder informar si está finalizada, esto sucede cuando se terminaron de utilizar todos los materiales.
+
 
 Se calcula que por m2 de superficie a construir se necesitan:
 
