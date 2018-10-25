@@ -47,11 +47,12 @@ Por trabajos de Electricidad los niveles aumentan en :
 * Cuando finaliza la jornada el obrero le informa a la obra que tipo de trabajo termino que se actulicen su niveles según corresponda.
 
 ## Etapa 2:
-Incorporar errores. Agregar una mini explicación de cómo tirar error.
+Aunque algunos no lo entiendan, los obreros tiene derecho a descandar. Si un obrero está descansando y la obra le piude que trabaje, debe arrojarle un error.
+Si la obra dispara la jornada y tiene obreros descansando, tiene que fallar.
 
-Agregarle al obrero un atributo que indica si está descansando. Si lo hacés trabajar cuando está descansando, falla. Si la obra dispara la jornada y tiene obreros descansando, tiene que fallar.
-La obra no deja trabajar a un obrero que no está registrado.
+Por otro lado, la obra no debe incoporar obreros que no está registrados en el sindicato.
 
+https://www.wollok.org/documentacion/conceptos/#mecanismo-de-excepciones
 
 ## Etapa 3:
 
