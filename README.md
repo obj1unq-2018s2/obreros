@@ -21,7 +21,7 @@ Cada obra tiene 3 caracteristicas que muestran el nivel avance de la misma:
 * confort
 * estética
 
-Inicialmente estos niveles están en 1
+Inicialmente estos niveles están en 10
 
 Una vez configurado esto, la obra tiene que poder informar si está finalizada, esto es así cuando los niveles de _seguridad_, _confort_ y _estética_ son mayores a 100.
 
