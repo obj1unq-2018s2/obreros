@@ -35,7 +35,7 @@ Por `trabajoDeAlbañileria()` los niveles aumentan en :
 Por `trabajoDePlomeria()` los niveles aumentan en :
 * seguridad: 5 puntos
 * confort: 10 puntos
-* estética: 5 puntos
+* estética: 15 puntos
 
 Por `trabajoDeElectricidad()` los niveles aumentan en :
 * seguridad: 20 puntos
