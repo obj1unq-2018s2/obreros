@@ -50,14 +50,17 @@ Por trabajos de Electricidad los niveles aumentan en :
 Aunque algunos no lo entiendan, los obreros tiene derecho a descandar. Si un obrero está descansando y la obra le piude que trabaje, debe arrojarle un error.
 Si la obra dispara la jornada y tiene obreros descansando, tiene que fallar.
 
-Por otro lado, la obra no debe incoporar obreros que no está registrados en el sindicato.
 
 https://www.wollok.org/documentacion/conceptos/#mecanismo-de-excepciones
 
 ## Etapa 3:
+Mal que le pese a los empleadores, el trabajor debe recibir una compensación por el trabajo realizado, en la construcción se suele pagar cada 15 días, quincena, los jornales adeudados para cada obrero.
 
-Trabajar sobre la obra también afecta al obrero: cuenta la jornada que no trabajó. Acá aparece superclase y template method.
-La obra tiene un método para pagar lo adeudado, que le pregunta a cada obrero cuántas jornadas trabajó y cuánto cobra por jornada. La obra recuerda cuánto gastó y el obrero recuerda cuánto cobró.
+Cuando la obra va a pagar la quincena a sus obreros, le consulta a cada obrero cuantos jornales le adeuda y cuanto cobra por Jornal.
+
+Para lograr esto, el obrero tiene que recordar cuantos jornales tiene pendientes de cobrar.
+
+El obrero tiene que recordar el acumulado de sueldos cobrados y la obra tiene que recordar el acumulado de sueldos pagados.
 
 ## Etapa 4:
 Se dividen los tipos de obra.
@@ -65,7 +68,9 @@ Se dividen los tipos de obra.
 Cada obra decide cómo afecta el trabajo de un profesional.
 Además, los edificios pagan un plus de X pesos.
 
-## Bonus:
+## Bonus 1:
+La obra no debe incoporar obreros que no está registrados en el sindicato.
 
+## Bonus 2
 Soportar varias obras por obrero, hay que meter un diccionario.
-Incorporar la UOCRA. Al agregar un obrero debe verificarse que esté afiliado, si eso no pasa lanzar error.
+https://www.wollok.org/documentacion/conceptos/#diccionarios
