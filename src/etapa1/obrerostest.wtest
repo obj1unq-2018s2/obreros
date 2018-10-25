@@ -1,0 +1,34 @@
+import obra.*
+import obreros.*
+
+describe "obreros" {
+	
+	var albanil;
+	var electricista;
+	var plomero;
+	var obra
+
+	fixture {
+		albanil = new Albanil()
+		electricista = new Electricista()
+		plomero = new Plomero()
+		obra = new Obra(2000000, #{albanil, electricista, plomero})
+	}
+
+	test "jornada" {
+		obra.dispararJornada()
+		assert.equals(50, obra.nivelDeSeguridad())
+		assert.equals(60, obra.nivelDeConfort())
+		assert.equals(50, obra.nivelDeEstetica())	
+	}
+
+	test "jornada terminada" {
+		obra.dispararJornada()
+		obra.dispararJornada()
+		obra.dispararJornada()
+
+		
+		assert.that(obra.terminada())	
+	}
+	
+}
