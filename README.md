@@ -1,81 +1,103 @@
 # Obreros
-Debemos armar un modelo de obrero de la construcción
+Debemos armar un modelo de obrero de la construcción, que trabajan en diferentes tipos de obras.
 
 ## Modelo básico
-Un obrero debe poder realizar distintos trabajos para la obra en que está trabajando.
-Los trabajos que puede realizar van a depender del tipo de obrero.
-Un obrero debe saber si esta trabajando o en descanso.
-Los obreros se registran en una obra para estar disponibles para el trabajo.
+Un obrero debe poder realizar distintos trabajos para la obra en la que está trabajando. Los trabajos que puede realizar van a depender del tipo de obrero. Un obrero debe saber si está trabajando o en descanso. Los obreros se registran en una obra para estar disponibles para el trabajo y solo trabajan para esa obra.
 
-Hay distintos tipo de obreros en una obra: _albañiles_, _plomeros_, _electricistas_ y _gasistas_.
+Hay distintos tipos de obreros en una obra: albañiles, plomeros, electricistas.
 
-El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según su tipo puede consumir:
- _albañil_ : 100 ladrillos
- _gasista_ : 2 metros de caños de gas
- _plomero_ : 10 metros de caños de agua
- _electricista_ : 3 metros de cable
- 
- Antes de comenzar la jornada el obrero debe verificar si tiene material para trabajar en la obra, sino hay disponible, no le corresponde trabajar.
- 
- Al final de cada jornada el obrero informa a la obra de su avance.
- Un obrero debe guardar registro de cada jornada trabajada y no cobrada.
+El avance de la obra se realiza por Jornal, y al final de cada jornada el obrero informa a la obra de su avance. 
+
+## Etapa 1:
+
+Para cada obra tenemos que poder configurar:
+
+* presupuesto, en pesos
+* los obreros que trabajan en ella
+
+Cada obra tiene 3 caracteristicas que muestran el nivel avance de la misma:
+
+* seguridad
+* confort
+* estética
+
+Inicialmente estos niveles están en 1
+
+Una vez configurado esto, la obra tiene que poder informar si está finalizada, esto es así cuando los niveles de _seguridad_, _confort_ y _estética_ son mayores a 100.
+
+Para que una obra avance, tenemos que poder pedirle a cada obrero que trabaje una jornada en la obra que tiene asignada. Vamos a suponer que siempre que trabajan siempre afectan en la misma proporción a los 3 niveles de las obras:
+
+Por `trabajoDeAlbañileria()` los niveles aumentan en :
+* seguridad: 10%
+* confort: 15%
+* estética: 5%
+
+Por `trabajoDePlomeria()` los niveles aumentan en :
+* seguridad: 5%
+* confort: 10%
+* estética: 5%
+
+Por `trabajoDeElectricidad()` los niveles aumentan en :
+* seguridad: 20%
+* confort: 25%
+* estética: 10%
+
+## Requerimientos
+* Obrero trabaja en una sola obra.
+* Los obreros puede registrarse / salirse de una obra.
+* La obra conoce quienes trabajan en ella y ejecuta una jornada, esto provoca que todos sus trabajadores trabajen.
+* Cuando finaliza la jornada el obrero le informa a la obra que tipo de trabajo termino que se actualicen su niveles según corresponda.
+
+## Etapa 2:
+Aunque algunos no lo entiendan, los obreros tiene derecho a descandar. Si un obrero está descansando y la obra le piude que trabaje, debe arrojarle un error.
+Si la obra dispara la jornada y tiene obreros descansando, tiene que fallar.
 
 
-# Tipos de obras
-Las obras conjunto de obreros que se registran para trabajar y trabajar por jornal.
-Las obras tiene una cantidad de metros de superficia a construir.
-Las obras no se pueden iniciar si no fueron habilitadas municipalmente, y no se puede finalizar si no se completaron todas las tareas necesarias.
-Mas allá del tipo de obra, cada obra al inicio define un presupuesto en pesos y una cantidad de materiales a consumir: _ladrillos_, _cables_ (en metros), _cañosDeAgua_ (en metros), _cañosDeGas_ (en metros).
-Cada trabajar informa a la obra de su trabajo realizado y está actualiza su avance.
-La obra está finalizada cuando se terminan de utilizar todos los materiales y tiene que poder informar si está finalizada.
+https://www.wollok.org/documentacion/conceptos/#mecanismo-de-excepciones
 
-Se calcula que por m2 de superficie a construir se necesitan:
+## Etapa 3:
+Mal que le pese a los empleadores, el trabajor debe recibir una compensación por el trabajo realizado, en la construcción se suele pagar cada 15 días, quincena, los jornales adeudados para cada obrero.
 
-- 500 ladrillos, 5 metros de caños de agua, 2 metros de caños de gas y 8 metros de cables.
+Cuando la obra va a pagar la quincena a sus obreros, le consulta a cada obrero cuantos jornales le adeuda y cuanto cobra por Jornal.
 
-El avance de la obra se realiza por Jornal, durante un jornal se estima que un obrero según su tipo puede consumir:
- _abañil_ : 100 ladrillos
- _gasista_ : 2 metros de caños de gas
- _plomero_ : 10 metros de caños de agua
- _electricista_ : 3 metros de cable
- 
-Al inicio de una jornal, verifica si faltan materiales por consumir y llamas a los obreros registrados para que trabajen la jornada de trabajo. Cuando el obrero finaliza su jornada, debe avisarle a la obra del avance.
+Para lograr esto, el obrero tiene que recordar cuantos jornales tiene pendientes de cobrar.
 
-Tenemos dos tipos de obras:
-_casas_ : las primeras pueden ser contrucciones de hasta 3 pisos, deben poder definirse la cantidad de habitaciones, baños y lugares comunes.
-Si la casa tiene mas de una planta, debe sumar un 20% de cada material por planta.
-Si tiene cochera, sumar otro 10% a cada material.
+El obrero tiene que recordar el acumulado de sueldos cobrados y la obra tiene que recordar el acumulado de sueldos pagados.
 
-_edificios_ : tienen 4 pisos o más, ademas se tiene q poder definir cuantos departamentos por piso.
-Los edificios además tiene que indicar la cantidad de ascendores, por ascensor se calcula 3000 metros de _cable_.
-Un  edificio puede tener cochera subterranea de varios niveles, por cada nivel se agrega:
+## Etapa 4:
+Tenemos distintos tipos de obras que agregan caracteristicas propias:
 
-- 5000 ladrillos, 100 metros de caños de agua y 200 metros de cables.
+Por un lado tenemos las `casas` que agregan como atributos:
 
+* _metrosCubiertos_ a construir
+* Si tiene _pileta_
 
-# Liquidacion de sueldos y Sindicatos
-Las obras liquidan el sueldo quincenalmente a todos los obreros, consultando a cada obreros cuando se le debe liquidar.
+y al momento de recibir un trabajos de :
 
-Los obreros saben cuantos jornales tienen pendientes de cobrar. El precio por jornal está definido por el sindicado (UOCRA). Los obreros deben guardar un registro de los días trabajados en la última quincena.
-Además deben guardar un registro de las obras en las que trabajó
+* `trabajoDeAlbañileria()`  se aumenta un 5% extra el nivel de _estetica_ si la casa tiene mas de 200 metros de _metrosCubiertos_
+* `trabajoDePlomeria()` se aumenta un 5% extra el nivel de _confort_ si la casa tiene _pileta_
 
-Los _sindicatos_ tienen una nomina de empleados registrados. Tambien saben el precio por jornal de los albaniles, el precio por ahora de cada especialidad:
+Por otro lado, si lo que construimos es un `Eificio`, se agregan como atributos:
 
-_albañil_ : 300
-_plomero_ : 800
-_electricista_ : 1000
-_gasista_ : 1300
+* los _pisos_ a construir
+* los _departamentosPorPiso_ a construir
+* Si tiene _sum_
 
-## UOCRA Presente
-Cada el sindicato visita la obra para verificar que todos los obreros esten en blanco y todos esten usando los elementos de seguridad correspondientes.
+y al momento de recibir un trabajos de :
 
-Para evitar suspensiones la obra toma algunas medidas:
+* `trabajoDeAlbañileria()`  se aumenta un 10% extra el nivel de _estetica_ si el `Edificio` tiene mas de 10 _pisos_
+* `trabajoDeElectricidad()` se aumenta un 15% extra el nivel de _seguridad_ si el `Edificio`  tiene mas de 8 _departamentosPorPiso_
+* `trabajoDePlomeria()` se aumenta un 5% extra el nivel de _confort_ si el `Edificio`  tiene _sum_
 
-- cuando un obrero se registra para trabajar en una obra, se verifica con el sindicato que el obrero en cuestion esté en sus registros.
+Por otro lado, en la construcción de un `Edificio` existe un bono extra por presentismo, al momento de pagar la quincena. El obrero califica al bono si trabajó al menos 9 días dentro de esa quincena.
+El valor de bono extra se especifica en la definición de la obra.
 
-- antes del inicio de la jornada laboral, se verifica que cada obrero esté utilizando los elementos de seguridad. Esta verificación se realiza preguntandole al obrero.
+## Bonus 1:
+UOCRA es el sindicato de obreros de la construcción y mantiene un registro de los obreros afiliados.
+Agregar los cambios necesarios para que la obra no deje registrar un obrero que no sea afiliado de UOCRA. Si un obrero no afilido pretende registrarse a la obra, la obra debe arrojar un error.
 
-- Cada obra debe poder _informar_ la nómina de obreros trabajando en ella su número de afiliado a UOCRA.
+## Bonus 2
+Introducir los cambios necesarios para que un obrero pueda registrarse en varias obra a la vez.
+Tener en cuenta que ahora debera llevar cuenta de las jornadas pendientes de cobrar de cada obra.
 
-## Enfermedad
-Un obrero puede declarse enfermo, en esos casos no debe ser llamado a trabajar.
+Ver https://www.wollok.org/documentacion/conceptos/#diccionarios
