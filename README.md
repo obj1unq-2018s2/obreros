@@ -44,13 +44,13 @@ Por `trabajoDeElectricidad()` los niveles aumentan en :
 
 ## Requerimientos
 * Obrero trabaja en una sola obra.
-* Los obreros puede registrarse / salirse de una obra.
 * La obra conoce quienes trabajan en ella y ejecuta una jornada, esto provoca que todos sus trabajadores trabajen.
 * Cuando finaliza la jornada el obrero le informa a la obra que tipo de trabajo termino que se actualicen su niveles según corresponda.
 
 ## Etapa 2:
 Aunque algunos no lo entiendan, los obreros tiene derecho a descandar. Si un obrero está descansando y la obra le piude que trabaje, debe arrojarle un error.
 Si la obra dispara la jornada y tiene obreros descansando, tiene que fallar.
+Por otro lado, los obreros pueden vincularse / desvincularse de una obra.
 
 
 https://www.wollok.org/documentacion/conceptos/#mecanismo-de-excepciones
