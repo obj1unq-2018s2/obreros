@@ -12,14 +12,13 @@ El avance de la obra se realiza por Jornal, y al final de cada jornada el obrero
 
 Para cada obra tenemos que poder configurar:
 
-* su presupuesto, en pesos;
-* los obreros que trabajan en ella;
+* los obreros que trabajan en ella
 
 Cada obra tiene 3 caracteristicas que muestran el nivel avance de la misma:
 
-* seguridad;
-* confort;
-* estética;
+* seguridad
+* confort
+* estética
 
 Inicialmente mentes, estos niveles están en 1
 
@@ -28,19 +27,19 @@ Una vez configurado esto, la obra tiene que poder informar si está finalizada, 
 Para que una obra avance, tenemos que poder pedirle a cada obrero que trabaje una jornada en la obra que tiene asignada. Vamos a suponer que siempre que trabajan siempre afectan en la misma proporción a los 3 niveles de las obras:
 
 Por trabajos de Albañileria los niveles aumentan en :
-* seguridad: 10%;
-* confort: 15%;
-* estética: 5%;
+* seguridad: 10%
+* confort: 15%
+* estética: 5%
 
 Por trabajos de Plomeria los niveles aumentan en :
-* seguridad: 5%;
-* confort: 10%;
-* estética: 5%;
+* seguridad: 5%
+* confort: 10%
+* estética: 5%
 
 Por trabajos de Electricidad los niveles aumentan en :
-* seguridad: 20%;
-* confort: 25%;
-* estética: 10%;
+* seguridad: 20%
+* confort: 25%
+* estética: 10%
 
 ## Requerimientos
 * Obrero trabaja en una sola obra.
