@@ -12,6 +12,7 @@ El avance de la obra se realiza por Jornal, y al final de cada jornada el obrero
 
 Para cada obra tenemos que poder configurar:
 
+* presupuesto, en pesos
 * los obreros que trabajan en ella
 
 Cada obra tiene 3 caracteristicas que muestran el nivel avance de la misma:
@@ -20,31 +21,32 @@ Cada obra tiene 3 caracteristicas que muestran el nivel avance de la misma:
 * confort
 * estética
 
-Inicialmente mentes, estos niveles están en 1
+Inicialmente estos niveles están en 1
 
 Una vez configurado esto, la obra tiene que poder informar si está finalizada, esto es así cuando los niveles de _seguridad_, _confort_ y _estética_ son mayores a 100.
 
 Para que una obra avance, tenemos que poder pedirle a cada obrero que trabaje una jornada en la obra que tiene asignada. Vamos a suponer que siempre que trabajan siempre afectan en la misma proporción a los 3 niveles de las obras:
 
-Por trabajos de Albañileria los niveles aumentan en :
+Por `trabajoDeAlbañileria()` los niveles aumentan en :
 * seguridad: 10%
 * confort: 15%
 * estética: 5%
 
-Por trabajos de Plomeria los niveles aumentan en :
+Por `trabajoDePlomeria()` los niveles aumentan en :
 * seguridad: 5%
 * confort: 10%
 * estética: 5%
 
-Por trabajos de Electricidad los niveles aumentan en :
+Por `trabajoDeElectricidad()` los niveles aumentan en :
 * seguridad: 20%
 * confort: 25%
 * estética: 10%
 
 ## Requerimientos
 * Obrero trabaja en una sola obra.
+* Los obreros puede registrarse / salirse de una obra.
 * La obra conoce quienes trabajan en ella y ejecuta una jornada, esto provoca que todos sus trabajadores trabajen.
-* Cuando finaliza la jornada el obrero le informa a la obra que tipo de trabajo termino que se actulicen su niveles según corresponda.
+* Cuando finaliza la jornada el obrero le informa a la obra que tipo de trabajo termino que se actualicen su niveles según corresponda.
 
 ## Etapa 2:
 Aunque algunos no lo entiendan, los obreros tiene derecho a descandar. Si un obrero está descansando y la obra le piude que trabaje, debe arrojarle un error.
@@ -63,10 +65,32 @@ Para lograr esto, el obrero tiene que recordar cuantos jornales tiene pendientes
 El obrero tiene que recordar el acumulado de sueldos cobrados y la obra tiene que recordar el acumulado de sueldos pagados.
 
 ## Etapa 4:
-Se dividen los tipos de obra.
+Tenemos distintos tipos de obras que agregan caracteristicas propias:
 
-Cada obra decide cómo afecta el trabajo de un profesional.
-Además, los edificios pagan un plus de X pesos.
+Por un lado tenemos las `casas` que agregan como atributos:
+
+* _metrosCubiertos_ a construir
+* Si tiene _pileta_
+
+y al momento de recibir un trabajos de :
+
+* `trabajoDeAlbañileria()`  se aumenta un 5% extra el nivel de _estetica_ si la casa tiene mas de 200 metros de _metrosCubiertos_
+* `trabajoDePlomeria()` se aumenta un 5% extra el nivel de _confort_ si la casa tiene _pileta_
+
+Por otro lado, si lo que construimos es un `Eificio`, se agregan como atributos:
+
+* los _pisos_ a construir
+* los _departamentosPorPiso_ a construir
+* Si tiene _sum_
+
+y al momento de recibir un trabajos de :
+
+* `trabajoDeAlbañileria()`  se aumenta un 10% extra el nivel de _estetica_ si el `Edificio` tiene mas de 10 _pisos_
+* `trabajoDeElectricidad()` se aumenta un 15% extra el nivel de _seguridad_ si el `Edificio`  tiene mas de 8 _departamentosPorPiso_
+* `trabajoDePlomeria()` se aumenta un 5% extra el nivel de _confort_ si el `Edificio`  tiene _sum_
+
+Por otro lado, en la construcción de un `Edificio` existe un bono extra por presentismo, al momento de pagar la quincena. El obrero califica al bono si trabajó al menos 9 días dentro de esa quincena.
+El valor de bono extra se especifica en la definición de la obra.
 
 ## Bonus 1:
 La obra no debe incoporar obreros que no está registrados en el sindicato.
