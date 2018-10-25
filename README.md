@@ -89,7 +89,7 @@ y al momento de recibir un trabajos de :
 * `trabajoDeElectricidad()` se aumenta un 15% extra el nivel de _seguridad_ si el `Edificio`  tiene mas de 8 _departamentosPorPiso_
 * `trabajoDePlomeria()` se aumenta un 5% extra el nivel de _confort_ si el `Edificio`  tiene _sum_
 
-Por otro lado, en la construcción de un `Edificio` existe un bono extra por presentismo, al momento de pagar la quincena. El obrero califica al bono si trabajó al menos 9 días dentro de esa quincena.
+Por otro lado, en la construcción de un `Edificio` existe un bono extra por presentismo, al momento de pagar la quincena. El obrero califica al bono si trabajó al menos 9 días dentro de esa quincena y el _presupuesto_ de la obra es mayor a $ 1000000.
 El valor de bono extra se especifica en la definición de la obra.
 
 ## Bonus 1:
