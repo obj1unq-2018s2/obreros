@@ -28,19 +28,19 @@ Una vez configurado esto, la obra tiene que poder informar si está finalizada, 
 Para que una obra avance, tenemos que poder pedirle a cada obrero que trabaje una jornada en la obra que tiene asignada. Vamos a suponer que siempre que trabajan siempre afectan en la misma proporción a los 3 niveles de las obras:
 
 Por `trabajoDeAlbañileria()` los niveles aumentan en :
-* seguridad: 10%
-* confort: 15%
-* estética: 5%
+* seguridad: 10 puntos
+* confort: 15 puntos
+* estética: 5 puntos
 
 Por `trabajoDePlomeria()` los niveles aumentan en :
-* seguridad: 5%
-* confort: 10%
-* estética: 5%
+* seguridad: 5 puntos
+* confort: 10 puntos
+* estética: 5 puntos
 
 Por `trabajoDeElectricidad()` los niveles aumentan en :
-* seguridad: 20%
-* confort: 25%
-* estética: 10%
+* seguridad: 20 puntos
+* confort: 25 puntos
+* estética: 10 puntos
 
 ## Requerimientos
 * Obrero trabaja en una sola obra.
@@ -74,8 +74,8 @@ Por un lado tenemos las `casas` que agregan como atributos:
 
 y al momento de recibir un trabajos de :
 
-* `trabajoDeAlbañileria()`  se aumenta un 5% extra el nivel de _estetica_ si la casa tiene mas de 200 metros de _metrosCubiertos_
-* `trabajoDePlomeria()` se aumenta un 5% extra el nivel de _confort_ si la casa tiene _pileta_
+* `trabajoDeAlbañileria()`  se aumenta 5 puntos extra el nivel de _estetica_ si la casa tiene mas de 200 metros de _metrosCubiertos_
+* `trabajoDePlomeria()` se aumenta 5 puntos extra el nivel de _confort_ si la casa tiene _pileta_
 
 Por otro lado, si lo que construimos es un `Eificio`, se agregan como atributos:
 
@@ -85,9 +85,9 @@ Por otro lado, si lo que construimos es un `Eificio`, se agregan como atributos:
 
 y al momento de recibir un trabajos de :
 
-* `trabajoDeAlbañileria()`  se aumenta un 10% extra el nivel de _estetica_ si el `Edificio` tiene mas de 10 _pisos_
-* `trabajoDeElectricidad()` se aumenta un 15% extra el nivel de _seguridad_ si el `Edificio`  tiene mas de 8 _departamentosPorPiso_
-* `trabajoDePlomeria()` se aumenta un 5% extra el nivel de _confort_ si el `Edificio`  tiene _sum_
+* `trabajoDeAlbañileria()`  se aumenta 10 puntos extra el nivel de _estetica_ si el `Edificio` tiene mas de 10 _pisos_
+* `trabajoDeElectricidad()` se aumenta 15 puntos extra el nivel de _seguridad_ si el `Edificio`  tiene mas de 8 _departamentosPorPiso_
+* `trabajoDePlomeria()` se aumenta 5 puntos extra el nivel de _confort_ si el `Edificio`  tiene _sum_
 
 Por otro lado, en la construcción de un `Edificio` existe un bono extra por presentismo, al momento de pagar la quincena. El obrero califica al bono si trabajó al menos 9 días dentro de esa quincena y el _presupuesto_ de la obra es mayor a $ 1000000.
 El valor de bono extra se especifica en la definición de la obra.
