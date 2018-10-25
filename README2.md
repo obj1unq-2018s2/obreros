@@ -93,8 +93,11 @@ Por otro lado, en la construcción de un `Edificio` existe un bono extra por pre
 El valor de bono extra se especifica en la definición de la obra.
 
 ## Bonus 1:
-La obra no debe incoporar obreros que no está registrados en el sindicato.
+UOCRA es el sindicato de obreros de la construcción y mantiene un registro de los obreros afiliados.
+Agregar los cambios necesarios para que la obra no deje registrar un obrero que no sea afiliado de UOCRA. Si un obrero no afilido pretende registrarse a la obra, la obra debe arrojar un error.
 
 ## Bonus 2
-Soportar varias obras por obrero, hay que meter un diccionario.
-https://www.wollok.org/documentacion/conceptos/#diccionarios
+Introducir los cambios necesarios para que un obrero pueda registrarse en varias obra a la vez.
+Tener en cuenta que ahora debera llevar cuenta de las jornadas pendientes de cobrar de cada obra.
+
+Ver https://www.wollok.org/documentacion/conceptos/#diccionarios
