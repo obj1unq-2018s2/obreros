@@ -1,0 +1,64 @@
+import obras.*
+import obreros.*
+
+describe "Etapa 2" {
+	
+	const juan = new Albanil()
+	const pedro = new Albanil()
+	const luis = new Gasista ()
+	const maria = new Gasista ()
+	const ana = new Plomero()
+	const obra = new Obra()
+	const newton = new Electricista ()
+
+	
+	fixture {
+		obra.ladrillos(1000)
+		obra.canos(400)
+		obra.fosforos(8000)
+		obra.arandelas(500)
+		obra.presupuesto(100000)
+		obra.vincularObrero(juan)
+		obra.vincularObrero(pedro)
+		obra.vincularObrero(luis)
+		obra.vincularObrero(maria)
+		obra.vincularObrero(ana)
+		obra.vincularObrero(newton)
+		juan.iniciarLicencia()
+		obra.registrarJornada()
+		juan.finalizarLicencia()
+		ana.iniciarLicencia()
+		obra.registrarJornada()
+	}
+	
+	test "sueldo Pedro" {
+		assert.equals(4000, pedro.sueldoPendiente())
+	}
+	
+	test "sueldo Juan" {
+		assert.equals(2000, juan.sueldoPendiente())
+	}
+	
+	test "sueldo Luis" {
+		assert.equals(6000, luis.sueldoPendiente())
+	}
+
+	test "sueldo Maria" {
+		assert.equals(6000, maria.sueldoPendiente())
+	}
+	
+	test "sueldo Ana" {
+		assert.equals(3000, ana.sueldoPendiente())
+	}
+	
+	test "sueldo Newton" {
+		assert.equals(7000, newton.sueldoPendiente())
+	}
+	
+	test "Pago Jornales Adeudados" {
+		obra.pagarSueldosAdeudados()
+		
+		assert.equals(0, obra.jornalesAdeudados())
+		assert.equals(72000, obra.presupuesto())
+	}
+}

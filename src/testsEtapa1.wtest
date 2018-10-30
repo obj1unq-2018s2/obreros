@@ -1,7 +1,7 @@
 import obras.*
 import obreros.*
 
-describe "group of tests" {
+describe "Etapa 1" {
 	
 	const juan = new Albanil()
 	const pedro = new Albanil()
@@ -9,6 +9,8 @@ describe "group of tests" {
 	const maria = new Gasista ()
 	const ana = new Plomero()
 	const obra = new Obra()
+	const newton = new Electricista ()
+	
 	
 	fixture {
 		obra.ladrillos(1000)
@@ -21,6 +23,7 @@ describe "group of tests" {
 		obra.vincularObrero(maria)
 		obra.vincularObrero(ana)
 		juan.iniciarLicencia()
+		obra.registrarJornada()
 		obra.registrarJornada()
 	}
 
