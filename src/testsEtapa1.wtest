@@ -1,0 +1,47 @@
+import obras.*
+import obreros.*
+
+describe "group of tests" {
+	
+	const juan = new Albanil()
+	const pedro = new Albanil()
+	const luis = new Gasista ()
+	const maria = new Gasista ()
+	const ana = new Plomero()
+	const obra = new Obra()
+	
+	fixture {
+		obra.ladrillos(1000)
+		obra.canos(400)
+		obra.fosforos(8000)
+		obra.arandelas(500)
+		obra.vincularObrero(juan)
+		obra.vincularObrero(pedro)
+		obra.vincularObrero(luis)
+		obra.vincularObrero(maria)
+		obra.vincularObrero(ana)
+		juan.iniciarLicencia()
+		obra.registrarJornada()
+	}
+
+	test "Ladrillos" {
+
+		assert.equals(900, obra.ladrillos())
+	}
+	
+	test "Caños" {
+
+		assert.equals(384, obra.canos())
+	}
+	
+	test "Fósforos" {
+
+		assert.equals(7960, obra.fosforos())
+	}
+	
+	test "Arandelas" {
+
+		assert.equals(470, obra.arandelas())
+	}
+	
+}
