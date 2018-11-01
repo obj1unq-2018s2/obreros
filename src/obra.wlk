@@ -6,7 +6,7 @@ class Obra {
 	 
 	// plantilla
 	const property plantilla = #{}
-	// materiales
+	// materiales, faltan algunos
 	var property ladrillos = 0
 	var property metrosDeCanio = 0
 	var property fosforos = 0
@@ -29,25 +29,33 @@ class Obra {
 	}
 	
 	method registrarJornadaLaboral() {
+		// este "if" es por la parte de Errores
 		if (self.obrerosDisponibles().isEmpty()) {
 			self.error("No hay obreros disponibles para trabajar")
 		}
-		plantilla.forEach { obr => 
+		// las distintas partes del enunciado van agregando acciones para cada obrero
+		plantilla.forEach { obr => {
+			// modelo basico
 			obr.consumirMateriales(self)
+			// avance de una obra
 			obr.registrarAporte(self)
+			// pago de jornales
 			obr.registrarJornalAdeudado()
-		}
+		}}
 	}
 	
+	// aporte de cada obrero
 	method levantarPared(metrosCuad) { metrosCuadradosConstruidos += metrosCuad }
 	method colocarCaniosDeAgua(metros) { metrosDeCaniosDeAguaColocados += metros } 
 	method colocarCaniosDeGas(metros) { metrosDeCaniosDeGasColocados += metros }
 	method colocarCable(metros) { metrosDeCableColocados += metros }
 	
+	// materiales
 	method descontarLadrillos(cuantos) { ladrillos -= cuantos }
 	method descontarCanio(cuanto) { metrosDeCanio -= cuanto }
 	method descontarFosforos(cuantos) { fosforos -= cuantos }
 	
+	// avance de obra
 	method terminoHabitaciones() {
 		return self.metrosCuadradosConstruidos() >= 50 * self.cantidadHabitaciones() 
 	}
@@ -85,13 +93,13 @@ class Casa inherits Obra {
 }
 
 class Edificio inherits Obra {
-	var property pisos = 5
+	// cantidadDePisos definido para todas las obras, para las casas también se informa 
 	var property departamentosPorPiso = 4
 	var property habitacionesPorDepartamento = 3
 	var property cantidadAscensores = 1
 	
 	override method cantidadHabitaciones() {
-		return habitacionesPorDepartamento * departamentosPorPiso * pisos
+		return habitacionesPorDepartamento * departamentosPorPiso * cantidadDePisos
 	}
 	
 	override method metrosDeCableNecesarios() {
