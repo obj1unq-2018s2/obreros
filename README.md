@@ -25,30 +25,19 @@ Inicialmente estos niveles están en 10
 
 Una vez configurado esto, la obra tiene que poder informar si está finalizada, esto es así cuando los niveles de _seguridad_, _confort_ y _estética_ son mayores a 100.
 
-Para que una obra avance, tenemos que poder pedirle a cada obrero que trabaje una jornada en la obra que tiene asignada. Vamos a suponer que siempre que trabajan siempre afectan en la misma proporción a los 3 niveles de las obras:
+Para que una obra avance, tenemos que poder pedirle a cada obrero que trabaje una jornada en la obra que tiene asignada.
+Al realizar un trabajo, los obreros incrementan los niveles de _seguridad_, _confort_ y _estética_ de la obra, en diferentes cantidades según el tipo de obrero:
 
-Por `trabajoDeAlbañileria()` los niveles aumentan en :
-* seguridad: 10 puntos
-* confort: 15 puntos
-* estética: 5 puntos
-
-Por `trabajoDePlomeria()` los niveles aumentan en :
-* seguridad: 5 puntos
-* confort: 10 puntos
-* estética: 15 puntos
-
-Por `trabajoDeElectricidad()` los niveles aumentan en :
-* seguridad: 20 puntos
-* confort: 25 puntos
-* estética: 10 puntos
+* Los albañiles aumentan la seguridad en 10 puntos, el confort en 15 puntos y la estética: 5 puntos.
+* Los plomeros aumentan la seguridad en 5 puntos, el confort en 10 puntos y la estética en 15 puntos.
+* Los electricistas aumentan la seguridad en 20 puntos, el confort en 25 puntos y la estética en 10 puntos.
 
 ## Requerimientos
 * Obrero trabaja en una sola obra.
 * La obra conoce quienes trabajan en ella y ejecuta una jornada, esto provoca que todos sus trabajadores trabajen.
-* Cuando finaliza la jornada el obrero le informa a la obra que tipo de trabajo termino que se actualicen su niveles según corresponda.
 
 ## Etapa 2:
-Aunque algunos no lo entiendan, los obreros tiene derecho a descandar. Si un obrero está descansando y la obra le piude que trabaje, debe arrojarle un error.
+Aunque algunos no lo entiendan, los obreros tiene derecho a descansar. Si un obrero está descansando y la obra le piude que trabaje, debe arrojarle un error.
 Si la obra dispara la jornada y tiene obreros descansando, tiene que fallar.
 Por otro lado, los obreros pueden vincularse / desvincularse de una obra.
 
@@ -77,7 +66,7 @@ y al momento de recibir un trabajos de :
 * `trabajoDeAlbañileria()`  se aumenta 5 puntos extra el nivel de _estetica_ si la casa tiene mas de 200 metros de _metrosCubiertos_
 * `trabajoDePlomeria()` se aumenta 5 puntos extra el nivel de _confort_ si la casa tiene _pileta_
 
-Por otro lado, si lo que construimos es un `Eificio`, se agregan como atributos:
+Por otro lado, si lo que construimos es un `Edificio`, se agregan como atributos:
 
 * los _pisos_ a construir
 * los _departamentosPorPiso_ a construir
